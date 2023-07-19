@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["/Users/moham/Documents/Code/Front-end project/ecommerce-store/*"],
+        "@/utils/*": ["./utils/*"],
+      "@/components/*": ["./components/*"],
+      },
+      "target": "es5",
+      "lib": [
+          "dom",
+          "dom.iterable",
+          "esnext"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": false,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve"
+  },
+  "exclude": [
+      "node_modules"
+, "components/ui/common/breadcrumbs/index.tssx"  ],
+  "include": [
+      "next-env.d.ts",
+      "**/*.ts",
+      "**/*.tsx",
+      "src"
+  ]
+}
