@@ -1,14 +1,21 @@
 import { Hero } from "../components/ui/common";
 import { CourseCard, List } from "../components/ui/course";
-import { BaseLayout } from "../components/ui/common/layout";
-import { getAllCourses } from "../content/courses/fetcher";
+import { BaseLayout } from "@/components/ui/common/layout";
+import { getAllCourses } from "@/content/courses/fetcher";
+import { CourseWithIndex, Course } from "content/types";
 
-export default function Home({ courses }) {
+interface HomeProps {
+  courses: CourseWithIndex[];
+}
+
+export default function Home({ courses }: HomeProps) {
   return (
     <BaseLayout>
       <Hero />
       <List courses={courses}>
-        {(course) => <CourseCard course={course} key={course.id} Footer={undefined} />}
+        {(course: Course) => (
+          <CourseCard course={course} key={course.id} Footer={undefined} />
+        )}
       </List>
     </BaseLayout>
   );

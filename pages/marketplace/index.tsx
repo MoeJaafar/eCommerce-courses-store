@@ -1,15 +1,20 @@
-import { CourseCard, List } from "../../components/ui/course";
-import { BaseLayout } from "../../components/ui/common/layout";
-import { getAllCourses } from "../../content/courses/fetcher";
-import { Button } from "../../components/ui/common";
-import { OrderModal } from "../../components/ui/order";
+import { CourseCard, List } from "@/components/ui/course";
+import { BaseLayout } from "@/components/ui/common/layout";
+import { getAllCourses } from "@/content/courses/fetcher";
+import { Button } from "@/components/ui/common";
+import { OrderModal } from "@/components/ui/order";
 import { useState } from "react";
-import { MarketHeader } from "../../components/ui/marketplace";
+import { MarketHeader } from "@/components/ui/marketplace";
+import { Course, CourseWithIndex } from "@/content/types";
 
-export default function Marketplace({ courses }) {
-  const [selectedCourse, setSelectedCourse] = useState(null);
+interface MarketplaceProps {
+  courses: CourseWithIndex[];
+}
 
-  const purchaseCourse = (order) => {
+export default function Marketplace({ courses }: MarketplaceProps) {
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+  const purchaseCourse = (order: {}) => {
     alert(JSON.stringify(order));
   };
 
@@ -17,7 +22,7 @@ export default function Marketplace({ courses }) {
     <BaseLayout>
       <MarketHeader />
       <List courses={courses}>
-        {(course) => (
+        {(course: Course) => (
           <CourseCard
             course={course}
             key={course.id}

@@ -1,5 +1,6 @@
-import { useEthPrice } from "../../../../components/providers/web3/hooks/useEthPrice";
-import { Modal, Button } from "../../../../components/ui/common";
+import { useEthPrice } from "@/components/providers/web3/hooks/useEthPrice";
+import { Modal, Button } from "@/components/ui/common";
+import { Course } from "@/content/types";
 import { useEffect, useState } from "react";
 
 const defaultOrder = {
@@ -13,7 +14,16 @@ const _createFormState = (isDisabled = false, message = "") => ({
   message,
 });
 
-const createFormState = ({ price, email, confirmationEmail }, hasAgreedTOS) => {
+interface FormInput {
+  price: string;
+  email: string;
+  confirmationEmail: string;
+}
+
+const createFormState = (
+  { price, email, confirmationEmail }: FormInput,
+  hasAgreedTOS: boolean,
+) => {
   if (!price || Number(price) <= 0) {
     return _createFormState(true, "Price is not valid.");
   } else if (confirmationEmail.length === 0 || email.length === 0) {
@@ -23,14 +33,24 @@ const createFormState = ({ price, email, confirmationEmail }, hasAgreedTOS) => {
   } else if (!hasAgreedTOS) {
     return _createFormState(
       true,
-      "You need to agree with terms of service in order to submit the form"
+      "You need to agree with terms of service in order to submit the form",
     );
   }
 
   return _createFormState();
 };
 
-export default function OrderModal({ course, onClose, onSubmit }) {
+interface OrderModalProps {
+  course: Course;
+  onClose: () => void;
+  onSubmit: (order: any) => void;
+}
+
+export default function OrderModal({
+  course,
+  onClose,
+  onSubmit,
+}: OrderModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [order, setOrder] = useState(defaultOrder);
   const [enablePrice, setEnablePrice] = useState(false);
@@ -45,7 +65,7 @@ export default function OrderModal({ course, onClose, onSubmit }) {
         price: eth.perItem,
       });
     }
-  }, [course]);
+  }, [course, eth.perItem]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -98,8 +118,8 @@ export default function OrderModal({ course, onClose, onSubmit }) {
                   onChange={({ target: { value } }) => {
                     if (isNaN(Number(value))) {
                       return;
-                  }
-                  
+                    }
+
                     setOrder({
                       ...order,
                       price: value,
@@ -183,18 +203,17 @@ export default function OrderModal({ course, onClose, onSubmit }) {
           </div>
         </div>
         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex">
-        <Button
-  className="someClassName" // replace with actual className if needed
-  disabled={formState.isDisabled}
-  onClick={() => {
-    onSubmit(order);
-  }}
->
-  Submit
-</Button>
-<Button className="someClassName" onClick={closeModal} variant="red"> // replace with actual className if needed
-  Cancel
-</Button>
+          <Button
+            disabled={formState.isDisabled}
+            onClick={() => {
+              onSubmit(order);
+            }}
+          >
+            Submit
+          </Button>
+          <Button className="someClassName" onClick={closeModal} variant="red">
+            Cancel
+          </Button>
         </div>
       </div>
     </Modal>

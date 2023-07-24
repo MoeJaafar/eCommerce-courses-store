@@ -1,9 +1,14 @@
-import { Modal } from "../../components/ui/common";
-import { BaseLayout } from "../../components/ui/common/layout";
-import { CourseHero, Curriculum, Keypoint } from "../../components/ui/course";
-import { getAllCourses } from "../../content/courses/fetcher";
+import { Modal } from "@/components/ui/common";
+import { BaseLayout } from "@/components/ui/common/layout";
+import { CourseHero, Curriculum, Keypoint } from "@/components/ui/course";
+import { getAllCourses } from "@/content/courses/fetcher";
+import { Course } from "@/content/types";
 
-export default function Course({ course }) {
+interface CourseProps {
+  course: Course;
+}
+
+export default function Course({ course }: CourseProps) {
   return (
     <BaseLayout>
       <CourseHero
@@ -13,7 +18,7 @@ export default function Course({ course }) {
       />
       <Keypoint points={course.wsl} />
       <Curriculum locked={true} />
-      <Modal isOpen={undefined} children={undefined} />
+      <Modal isOpen={undefined}> </Modal>
     </BaseLayout>
   );
 }
@@ -31,7 +36,13 @@ export function getStaticPaths() {
   };
 }
 
-export function getStaticProps({ params }) {
+interface GetStaticPropsContext {
+  params: {
+    slug: string;
+  };
+}
+
+export function getStaticProps({ params }: GetStaticPropsContext) {
   const { data } = getAllCourses();
   const course = data.filter((c) => c.slug === params.slug)[0];
   return {

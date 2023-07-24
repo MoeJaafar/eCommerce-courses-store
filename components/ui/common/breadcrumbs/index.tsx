@@ -1,6 +1,15 @@
 import { ActiveLink } from "../../common";
 
-export default function Breadcrumbs({ items }) {
+interface BreadcrumbItem {
+  href: string;
+  value: string;
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbItem[];
+}
+
+export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="breadcrumb">
       <ol className="flex leading-none text-black divide-x divide-black">
@@ -12,7 +21,7 @@ export default function Breadcrumbs({ items }) {
             } font-medium text-gray-500 hover:text-gray-900`}
           >
             <ActiveLink href={item.href}>
-              <a>{item.value}</a>
+              <span>{item.value}</span>
             </ActiveLink>
           </li>
         ))}

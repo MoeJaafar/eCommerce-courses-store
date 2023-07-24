@@ -1,17 +1,21 @@
-interface ButtonProps {
-  [x: string]: any;
-  children: any;
-  className?: any;  // Now className is optional
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+
+type ButtonVariant = "purple" | "red" | "lightPurple";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  className?: string;
   hoverable?: boolean;
-  variant?: string;
+  variant?: ButtonVariant;
 }
 
-
-
-export default function Button({ children, className, hoverable, variant, ...rest }: ButtonProps) {
-
-  
-
+const Button: FC<ButtonProps> = ({
+  children,
+  className = "",
+  hoverable = false,
+  variant,
+  ...rest
+}) => {
   const variants = {
     purple: `text-white bg-indigo-600 ${hoverable && "hover:bg-indigo-700"}`,
     red: `text-white bg-red-600 ${hoverable && "hover:bg-red-700"}`,
@@ -23,9 +27,13 @@ export default function Button({ children, className, hoverable, variant, ...res
   return (
     <button
       {...rest}
-      className={`disabled:opacity-50 disabled:cursor-not-allowed px-8 py-3 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
+      className={`disabled:opacity-50 disabled:cursor-not-allowed px-8 py-3 border rounded-md text-base font-medium ${className} ${
+        variants[variant ?? "purple"]
+      }`}
     >
       {children}
     </button>
   );
-}
+};
+
+export default Button;

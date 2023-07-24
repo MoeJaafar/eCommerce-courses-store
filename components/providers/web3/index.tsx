@@ -1,8 +1,16 @@
-import { createContext, useContext, useEffect, useState, useMemo, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+  ReactNode,
+} from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
 import { setupHooks } from "./hooks/setupHooks";
-import { loadContract } from "/Users/moham/Documents/Code/Front-end project/ecommerce-store/utils/loadContract";
+import { loadContract } from "@/utils/loadContract";
+import { SWRResponse } from "swr";
 
 interface IWeb3Context {
   provider: any;
@@ -67,7 +75,7 @@ export default function Web3Provider({ children }: IWeb3Provider) {
           }
         : () =>
             console.error(
-              "Cannot connect to Metamask, try to reload your browser please!"
+              "Cannot connect to Metamask, try to reload your browser please!",
             ),
     };
   }, [web3Api]);
@@ -81,7 +89,19 @@ export function useWeb3() {
   return useContext(Web3Context);
 }
 
-export function useHooks(cb: (hooks: any) => any) {
-  const { hooks } = useWeb3();
-  return cb(hooks);
+type Hooks = {
+  useNetwork: () => SWRResponse<unknown, Error>;
+  useAccount: () => SWRResponse<unknown, Error>;
+};
+
+export function useHooks(
+  cb: (hooks: Hooks) => () => SWRResponse<unknown, Error>,
+): (() => SWRResponse<unknown, Error>) | never {
+  const context = useWeb3();
+
+  if (context) {
+    return cb(context.hooks);
+  } else {
+    throw new Error("Web3Context is not initialized");
+  }
 }

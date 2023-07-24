@@ -10,7 +10,11 @@ const lectures = [
 const statusClass =
   "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
 
-export default function Curriculum({ locked }) {
+interface CurriculumProps {
+  locked: boolean;
+}
+
+export default function Curriculum({ locked }: CurriculumProps) {
   return (
     <section className="max-w-5xl mx-auto">
       <div className="flex flex-col">

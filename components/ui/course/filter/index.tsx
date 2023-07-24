@@ -1,4 +1,4 @@
-import { Button } from "../../../../components/ui/common";
+import { Button } from "@/components/ui/common";
 import { FC } from "react";
 
 const CourseFilter: FC = () => {

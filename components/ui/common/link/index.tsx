@@ -7,7 +7,11 @@ interface ActiveLinkProps extends LinkProps {
   activeLinkClass?: string;
 }
 
-export default function ActiveLink({ children, activeLinkClass, ...props }: ActiveLinkProps) {
+export default function ActiveLink({
+  children,
+  activeLinkClass,
+  ...props
+}: ActiveLinkProps) {
   const { pathname } = useRouter();
   let className = children.props.className || "";
 
@@ -17,9 +21,5 @@ export default function ActiveLink({ children, activeLinkClass, ...props }: Acti
     }`;
   }
 
-  return (
-    <Link {...props}>
-      {React.cloneElement(children, { className })}
-    </Link>
-  );
+  return <Link {...props}>{React.cloneElement(children, { className })}</Link>;
 }

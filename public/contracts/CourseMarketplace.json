@@ -4495,9 +4495,7 @@
   "ast": {
     "absolutePath": "project:/contracts/CourseMarketplace.sol",
     "exportedSymbols": {
-      "CourseMarketplace": [
-        195
-      ]
+      "CourseMarketplace": [195]
     },
     "id": 196,
     "license": "MIT",
@@ -4505,15 +4503,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:32:0"
       },
@@ -4525,9 +4515,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 195,
-        "linearizedBaseContracts": [
-          195
-        ],
+        "linearizedBaseContracts": [195],
         "name": "CourseMarketplace",
         "nameLocation": "78:17:0",
         "nodeType": "ContractDefinition",
@@ -4697,9 +4685,7 @@
                   "pathNode": {
                     "id": 14,
                     "name": "State",
-                    "nameLocations": [
-                      "291:5:0"
-                    ],
+                    "nameLocations": ["291:5:0"],
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 5,
                     "src": "291:5:0"
@@ -4764,9 +4750,7 @@
                 "pathNode": {
                   "id": 19,
                   "name": "Course",
-                  "nameLocations": [
-                    "381:6:0"
-                  ],
+                  "nameLocations": ["381:6:0"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 17,
                   "src": "381:6:0"
@@ -5186,9 +5170,7 @@
               "src": "1143:413:0",
               "statements": [
                 {
-                  "assignments": [
-                    67
-                  ],
+                  "assignments": [67],
                   "declarations": [
                     {
                       "constant": false,
@@ -5452,9 +5434,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    86
-                  ],
+                  "assignments": [86],
                   "declarations": [
                     {
                       "constant": false,
@@ -5785,13 +5765,7 @@
                         "1494:5:0",
                         "1520:5:0"
                       ],
-                      "names": [
-                        "id",
-                        "price",
-                        "proof",
-                        "owner",
-                        "state"
-                      ],
+                      "names": ["id", "price", "proof", "owner", "state"],
                       "nodeType": "FunctionCall",
                       "src": "1417:133:0",
                       "tryCall": false,
@@ -5966,9 +5940,7 @@
                 "modifierName": {
                   "id": 116,
                   "name": "onlyOwner",
-                  "nameLocations": [
-                    "1626:9:0"
-                  ],
+                  "nameLocations": ["1626:9:0"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 59,
                   "src": "1626:9:0"
@@ -6358,9 +6330,7 @@
                     "pathNode": {
                       "id": 148,
                       "name": "Course",
-                      "nameLocations": [
-                        "2023:6:0"
-                      ],
+                      "nameLocations": ["2023:6:0"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 17,
                       "src": "2023:6:0"
@@ -6811,10 +6781,7 @@
         ],
         "scope": 196,
         "src": "69:2386:0",
-        "usedErrors": [
-          42,
-          45
-        ]
+        "usedErrors": [42, 45]
       }
     ],
     "src": "33:2422:0"

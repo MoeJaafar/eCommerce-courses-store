@@ -1,7 +1,12 @@
-import { Web3Provider } from "../../../../../components/providers";
-import { Navbar, Footer } from "../../../../../components/ui/common";
+import { Web3Provider } from "@/components/providers";
+import { Navbar, Footer } from "@/components/ui/common";
+import { ReactNode } from "react";
 
-export default function BaseLayout({ children }) {
+interface BaseLayoutProps {
+  children: ReactNode;
+}
+
+export default function BaseLayout({ children }: BaseLayoutProps) {
   return (
     <Web3Provider>
       <div className="bg-[#ffffff] overflow-hidden">

@@ -1,7 +1,17 @@
 import { useEffect } from "react";
 import useSWR from "swr";
 
-const NETWORKS = {
+interface Web3 {
+  eth: {
+    getChainId: () => Promise<number>;
+  };
+}
+
+interface Provider {
+  on: (event: string, callback: (data: string) => void) => this;
+}
+
+const NETWORKS: Record<number, string> = {
   1: "Ethereum Main Network",
   3: "Ropsten Test Network",
   4: "Rinkeby Test Network",
@@ -12,15 +22,19 @@ const NETWORKS = {
   11155111: "Sepolia test network",
 };
 
-const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID];
+const NETWORK_ID: number = parseInt(
+  process.env.NEXT_PUBLIC_TARGET_CHAIN_ID || "1",
+);
 
-export const handler = (web3, provider) => () => {
+const targetNetwork: string = NETWORKS[NETWORK_ID];
+
+export const handler = (web3: Web3, provider: Provider) => () => {
   const { data, mutate, ...rest } = useSWR(
     () => (web3 ? "web3/network" : null),
     async () => {
       const chainId = await web3.eth.getChainId();
       return NETWORKS[chainId];
-    }
+    },
   );
 
   useEffect(() => {
@@ -28,7 +42,7 @@ export const handler = (web3, provider) => () => {
       provider.on("chainChanged", (chainId) => {
         mutate(NETWORKS[parseInt(chainId, 16)]);
       });
-  }, [web3]);
+  }, [mutate]);
 
   return {
     data,

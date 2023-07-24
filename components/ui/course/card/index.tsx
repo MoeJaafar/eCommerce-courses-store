@@ -1,11 +1,18 @@
 import { useAccount, useNetwork } from "@/components/web3/hooks";
+import { Course } from "@/content/types";
 import Image from "next/image";
 import Link from "next/link";
+import { FC } from "react";
 
-export default function CourseCard({ course, Footer }) {
+interface CourseCardProps {
+  course: Course;
+  Footer?: FC<{ canPurchaseCourse: boolean }>;
+}
+
+export default function CourseCard({ course, Footer }: CourseCardProps) {
   const { network } = useNetwork();
   const { account } = useAccount();
-  const canPurchaseCourse = !!(account.data && network.isSupported);
+  const canPurchaseCourse = !!(account.data && network.data.isSupported);
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">

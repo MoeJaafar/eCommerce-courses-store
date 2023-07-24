@@ -6,7 +6,12 @@ const TYPES = {
   danger: "red",
 };
 
-export default function Message({ children, type = "success" }) {
+interface MessageProps {
+  children: React.ReactNode;
+  type?: keyof typeof TYPES;
+}
+
+export default function Message({ children, type = "success" }: MessageProps) {
   const [isDisplayed, setIsDisplayed] = useState(true);
 
   if (!isDisplayed) {

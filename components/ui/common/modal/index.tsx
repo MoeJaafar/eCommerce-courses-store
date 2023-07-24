@@ -1,4 +1,11 @@
-export default function Modal({ isOpen, children }) {
+import { ReactNode } from "react";
+
+interface ModalProps {
+  isOpen?: boolean;
+  children: ReactNode;
+}
+
+export default function Modal({ isOpen, children }: ModalProps) {
   return (
     <section>
       <div

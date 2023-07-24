@@ -1,6 +1,16 @@
 import Image from "next/image";
 
-export default function CourseHero({ title, description, image }) {
+interface CourseHeroProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
+export default function CourseHero({
+  title,
+  description,
+  image,
+}: CourseHeroProps) {
   return (
     <section className="py-6">
       <div className="relative bg-white overflow-hidden">

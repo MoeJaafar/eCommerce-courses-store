@@ -1,4 +1,10 @@
-export default function OwnedCourseCard({ children }) {
+import { ReactNode } from "react";
+
+interface OwnedCourseCardProps {
+  children: ReactNode;
+}
+
+export default function OwnedCourseCard({ children }: OwnedCourseCardProps) {
   return (
     <div className="bg-white border shadow overflow-hidden sm:rounded-lg mb-3">
       <div className="px-4 py-5 sm:px-6">

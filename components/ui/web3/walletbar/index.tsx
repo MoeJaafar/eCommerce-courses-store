@@ -1,5 +1,5 @@
-import { useWeb3 } from "../../../../components/providers";
-import { useNetwork } from "../../../../components/web3/hooks";
+import { useWeb3 } from "@/components/providers";
+import { useNetwork } from "@/components/web3/hooks";
 
 export default function WalletBar() {
   const { network } = useNetwork();
@@ -25,11 +25,11 @@ export default function WalletBar() {
               </div>
             </div>
             <div>
-              {network.hasFinishedFirstFetch && !network.isSupported && (
+              {network.hasFinishedFirstFetch && !network.data.isSupported && (
                 <div className="bg-red-500 p-3 rounded-lg">
                   <div> Connected to the wrong Network</div>
                   <div>
-                    Connect to: <strong>{network.target}</strong>
+                    Connect to: <strong>{network.data.target}</strong>
                   </div>
                 </div>
               )}

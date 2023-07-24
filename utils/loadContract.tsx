@@ -8,7 +8,7 @@ export const loadContract = async (name, web3) => {
   try {
     contract = new web3.eth.Contract(
       Artifact.abi,
-      Artifact.networks[NETWORK_ID].address
+      Artifact.networks[NETWORK_ID].address,
     );
   } catch {
     console.log(`Contract ${name} cannot be loaded`);

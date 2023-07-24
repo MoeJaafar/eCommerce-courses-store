@@ -1,4 +1,8 @@
-export default function Keypoint({ points }) {
+interface KeypointProps {
+  points: string[];
+}
+
+export default function Keypoint({ points }: KeypointProps) {
   return (
     <section>
       <div className="py-12 bg-white">

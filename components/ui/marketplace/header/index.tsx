@@ -1,6 +1,6 @@
-import WalletBar from "../../../../components/ui/web3/walletbar";
-import EthRates from "../../../../components/ui/web3/ethRates";
-import { Breadcrumbs } from "../../../../components/ui/common";
+import WalletBar from "@/components/ui/web3/walletbar";
+import EthRates from "@/components/ui/web3/ethRates";
+import { Breadcrumbs } from "@/components/ui/common";
 
 const LINKS = [
   {

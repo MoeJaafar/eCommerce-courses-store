@@ -1,6 +1,7 @@
-import { useHooks } from "../../../components/providers/web3";
+import { SWRResponse } from "swr";
+import { useHooks } from "@/components/providers/web3";
 
-const enhanceHook = (swrRes) => {
+const enhanceHook = (swrRes: SWRResponse) => {
   return {
     ...swrRes,
     hasFinishedFirstFetch: swrRes.data || swrRes.error,
@@ -28,6 +29,6 @@ export const useWalletInfo = () => {
   return {
     account,
     network,
-    canPurchaseCourse: !!(account.data && network.isSupported),
+    canPurchaseCourse: !!(account.data && network.data.isSupported),
   };
 };
