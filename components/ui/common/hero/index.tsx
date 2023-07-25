@@ -1,14 +1,14 @@
 export default function Hero() {
   return (
-    <section className="lg:2/6 text-left my-28 bg-white rounded-xl">
-      <div className="text-6xl font-semibold text-gray-900 leading-none">
+    <section className="lg:2/6 text-left my-10 md:my-28 bg-white rounded-xl">
+      <div className="text-2xl md:text-6xl font-semibold text-gray-900 leading-none text-center md:text-start">
         Grow your career as a developer
       </div>
-      <div className="mt-6 text-xl font-light text-black antialiased">
+      <div className="mt-6 text-xl md:text-2xl font-light text-black antialiased text-center md:text-start">
         Learn programming and web development the easy way! Get unlimited access
         to all of our courses.
       </div>
-      <div className="mt-5 sm:mt-8 flex lg:justify-start">
+      <div className="mt-5 sm:mt-8 flex md:justify-start justify-center">
         <div className="rounded-md shadow">
           <a
             href="#"
