@@ -15,9 +15,9 @@ export default function CourseCard({ course, Footer }: CourseCardProps) {
   const canPurchaseCourse = !!(account.data && network.data.isSupported);
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-      <div className="flex h-full w-full">
-        <div className="flex">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-full">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex justify-center">
           <Image
             className="object-cover"
             src={course.coverImage}
@@ -31,7 +31,7 @@ export default function CourseCard({ course, Footer }: CourseCardProps) {
             {course.type}
           </div>
           <Link legacyBehavior href={`/courses/${course.slug}`}>
-            <a className=" h-12 block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+            <a className=" h-15 block mt-1 md:text-lg text-sm leading-tight font-medium text-black hover:underline">
               {course.title}
             </a>
           </Link>
