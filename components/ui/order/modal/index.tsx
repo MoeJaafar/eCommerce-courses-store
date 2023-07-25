@@ -43,7 +43,7 @@ const createFormState = (
 interface OrderModalProps {
   course: Course;
   onClose: () => void;
-  onSubmit: (order: any) => void;
+  onSubmit: (order: {}) => void;
 }
 
 export default function OrderModal({
