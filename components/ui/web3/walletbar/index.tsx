@@ -13,15 +13,15 @@ export default function WalletBar() {
   const { requireInstall } = web3Context;
 
   return (
-    <div className=" pt-11">
+    <div className="pt-11">
       <section className="text-white bg-indigo-800 rounded-md">
         <div className="p-8">
           <h1 className="text-2xl">Hello there</h1>
           <h2 className="subtitle mb-5 text-xl">
             I hope you are having a great day!
           </h2>
-          <div className="flex justify-between items-center">
-            <div className="sm:flex sm:justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row items-center justify-between">
+            <div className="mb-3 sm:mb-0 sm:flex sm:justify-center lg:justify-start">
               <div className="rounded-md shadow">
                 <a
                   href="#"
@@ -31,10 +31,10 @@ export default function WalletBar() {
                 </a>
               </div>
             </div>
-            <div>
+            <div className="sm:flex sm:space-x-2 md:flex-col">
               {network.hasFinishedFirstFetch && !network.data.isSupported && (
-                <div className="bg-red-500 p-3 rounded-lg">
-                  <div> Connected to the wrong Network</div>
+                <div className="bg-red-500 p-3 rounded-lg mb-2 sm:mb-0">
+                  <div>Connected to the wrong Network</div>
                   <div>
                     Connect to: <strong>{network.data.target}</strong>
                   </div>
@@ -48,7 +48,7 @@ export default function WalletBar() {
               )}
 
               {network.data && (
-                <div className=" pt-4">
+                <div>
                   <span>Currently on </span>
                   <strong className="text-2xl">{network.data}</strong>
                 </div>
