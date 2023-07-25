@@ -90,7 +90,7 @@ export default function Web3Provider({ children }: IWeb3Provider) {
           }
         : () =>
             console.error(
-              "Cannot connect to Metamask, try to reload your browser please!"
+              "Cannot connect to Metamask, try to reload your browser please!",
             ),
     };
   }, [web3Api]);
@@ -111,7 +111,7 @@ type Hooks = {
 };
 
 export function useHooks(
-  cb: (hooks: Hooks) => () => SWRResponse<unknown, Error>
+  cb: (hooks: Hooks) => () => SWRResponse<unknown, Error>,
 ): (() => SWRResponse<unknown, Error>) | never {
   const context = useWeb3();
 

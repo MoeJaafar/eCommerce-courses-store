@@ -27,11 +27,11 @@ interface MetaMaskEthereumProvider extends AbstractProvider {
   off(eventName: string | symbol, listener: (...args: any[]) => void): this;
   addListener(
     eventName: string | symbol,
-    listener: (...args: any[]) => void
+    listener: (...args: any[]) => void,
   ): this;
   removeListener(
     eventName: string | symbol,
-    listener: (...args: any[]) => void
+    listener: (...args: any[]) => void,
   ): this;
   removeAllListeners(event?: string | symbol): this;
 }

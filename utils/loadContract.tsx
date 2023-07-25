@@ -1,7 +1,7 @@
 import Web3 from "web3";
 
 const NETWORK_ID: number = parseInt(
-  process.env.NEXT_PUBLIC_TARGET_CHAIN_ID || "1"
+  process.env.NEXT_PUBLIC_TARGET_CHAIN_ID || "1",
 );
 
 export const loadContract = async (name: string, web3: Web3) => {
@@ -12,7 +12,7 @@ export const loadContract = async (name: string, web3: Web3) => {
   try {
     contract = new web3.eth.Contract(
       Artifact.abi,
-      Artifact.networks[NETWORK_ID].address
+      Artifact.networks[NETWORK_ID].address,
     );
   } catch {
     console.log(`Contract ${name} cannot be loaded`);

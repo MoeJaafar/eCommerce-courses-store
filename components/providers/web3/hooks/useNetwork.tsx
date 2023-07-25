@@ -19,7 +19,7 @@ const NETWORKS: Record<number, string> = {
 };
 
 const NETWORK_ID: number = parseInt(
-  process.env.NEXT_PUBLIC_TARGET_CHAIN_ID || "1"
+  process.env.NEXT_PUBLIC_TARGET_CHAIN_ID || "1",
 );
 
 const targetNetwork: string = NETWORKS[NETWORK_ID];
@@ -30,7 +30,7 @@ export const handler = (web3: Web3, provider: Provider) => () => {
     async () => {
       const chainId = await web3.eth.getChainId();
       return NETWORKS[chainId];
-    }
+    },
   );
 
   useEffect(() => {

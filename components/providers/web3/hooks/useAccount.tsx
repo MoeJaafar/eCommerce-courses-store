@@ -25,7 +25,7 @@ export const handler = (web3: Web3Instance, provider: Provider) => () => {
     async () => {
       const accounts = await web3.eth.getAccounts();
       return accounts[0];
-    }
+    },
   );
 
   useEffect(() => {
