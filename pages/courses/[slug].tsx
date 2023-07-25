@@ -36,27 +36,16 @@ export default function Course({ course }: CourseProps) {
   );
 }
 
-export function getStaticPaths() {
-  const { data } = getAllCourses();
-
-  return {
-    paths: data.map((c) => ({
-      params: {
-        slug: c.slug,
-      },
-    })),
-    fallback: false,
-  };
-}
-
-interface GetStaticPropsContext {
+interface GetServerSidePropsContext {
   params: {
     slug: string;
   };
 }
 
-export function getStaticProps({ params }: GetStaticPropsContext) {
-  const { data } = getAllCourses();
+export async function getServerSideProps({
+  params,
+}: GetServerSidePropsContext) {
+  const { data } = await getAllCourses();
   const course = data.filter((c) => c.slug === params.slug)[0];
   return {
     props: {
