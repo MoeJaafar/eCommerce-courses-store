@@ -7,18 +7,6 @@ export default function Document() {
     
     
     <Html lang="en">
-      <NextSeo
-        title={SEO.title}
-        description={SEO.description}
-        openGraph={{
-          images: [
-            {
-              url: SEO.coverImg,
-            },
-          ],
-        }}
-        canonical={SEO.url}
-      />
       <Head />
       <body>
         <Main />
