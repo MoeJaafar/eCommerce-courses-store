@@ -13,7 +13,7 @@ export default function Document() {
         openGraph={{
           images: [
             {
-              url: SEO.openGraph.coverImage,
+              url: SEO.coverImg,
             },
           ],
         }}
