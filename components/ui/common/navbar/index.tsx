@@ -97,7 +97,7 @@ export default function Navbar() {
                         {account.data.substring(0, 5)}...
                         {account.data.substring(
                           account.data.length - 4,
-                          account.data.length
+                          account.data.length,
                         )}
                       </span>
                     )}
