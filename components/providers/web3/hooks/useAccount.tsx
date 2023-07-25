@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import useSWR from "swr";
+import { Provider } from "@/content/types";
 
 interface AdminAddresses {
   [key: string]: boolean;
@@ -18,17 +19,13 @@ interface Web3Instance {
   };
 }
 
-interface Provider {
-  on: (event: string, listener: (accounts: string[]) => void) => void;
-}
-
 export const handler = (web3: Web3Instance, provider: Provider) => () => {
   const { data, mutate, ...rest } = useSWR(
     () => (web3 ? "web3/accounts" : null),
     async () => {
       const accounts = await web3.eth.getAccounts();
       return accounts[0];
-    },
+    }
   );
 
   useEffect(() => {

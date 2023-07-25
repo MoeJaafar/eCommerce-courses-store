@@ -11,15 +11,20 @@ import Web3 from "web3";
 import { setupHooks } from "./hooks/setupHooks";
 import { loadContract } from "@/utils/loadContract";
 import { SWRResponse } from "swr";
+import { Contract } from "web3-eth-contract";
+import { Provider } from "@/content/types";
 
 interface IWeb3Context {
   provider: any;
-  web3: any;
-  contract: any;
+  web3: Web3 | null;
+  contract: Contract | null;
   isLoading: boolean;
-  hooks: any;
+  hooks: {
+    useAccount: () => any;
+    useNetwork: () => any;
+  };
   requireInstall?: boolean;
-  connect?: any;
+  connect?: () => void;
 }
 
 const Web3Context = createContext<IWeb3Context | null>(null);
@@ -34,12 +39,16 @@ export default function Web3Provider({ children }: IWeb3Provider) {
     web3: null,
     contract: null,
     isLoading: true,
-    hooks: setupHooks(),
+    hooks: {
+      useAccount: () => 1,
+      useNetwork: () => 2,
+    },
   });
 
   useEffect(() => {
     const loadProvider = async () => {
-      const provider = await detectEthereumProvider();
+      const provider = (await detectEthereumProvider()) as Provider;
+
       if (provider) {
         const web3 = new Web3(provider as any);
         const contract = await loadContract("CourseMarketplace", web3);
@@ -49,7 +58,7 @@ export default function Web3Provider({ children }: IWeb3Provider) {
           web3,
           contract,
           isLoading: false,
-          hooks: setupHooks(web3, provider),
+          hooks: setupHooks([web3, provider]),
         });
       } else {
         setWeb3Api((api) => ({ ...api, isLoading: false }));
@@ -68,14 +77,20 @@ export default function Web3Provider({ children }: IWeb3Provider) {
       connect: provider
         ? async () => {
             try {
-              await web3Api.provider.request({ method: "eth_requestAccounts" });
+              if (web3Api.provider && web3Api.provider.request) {
+                await web3Api.provider.request({
+                  method: "eth_requestAccounts",
+                });
+              } else {
+                console.error("provider not found!");
+              }
             } catch {
               console.error("Couldn't retreive account!");
             }
           }
         : () =>
             console.error(
-              "Cannot connect to Metamask, try to reload your browser please!",
+              "Cannot connect to Metamask, try to reload your browser please!"
             ),
     };
   }, [web3Api]);
@@ -86,6 +101,7 @@ export default function Web3Provider({ children }: IWeb3Provider) {
 }
 
 export function useWeb3() {
+  console.log(Web3Context.Provider);
   return useContext(Web3Context);
 }
 
@@ -95,7 +111,7 @@ type Hooks = {
 };
 
 export function useHooks(
-  cb: (hooks: Hooks) => () => SWRResponse<unknown, Error>,
+  cb: (hooks: Hooks) => () => SWRResponse<unknown, Error>
 ): (() => SWRResponse<unknown, Error>) | never {
   const context = useWeb3();
 

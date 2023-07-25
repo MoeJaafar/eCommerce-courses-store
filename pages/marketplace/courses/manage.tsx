@@ -1,8 +1,8 @@
-import { Button } from "../../../components/ui/common";
-import { BaseLayout } from "../../../components/ui/common/layout";
-import { CourseFilter } from "../../../components/ui/course";
-import OwnedCourseCard from "../../../components/ui/course/card/OwnedCourseCard";
-import { MarketHeader } from "../../../components/ui/marketplace";
+import { Button } from "@/components/ui/common";
+import { BaseLayout } from "@/components/ui/common/layout";
+import { CourseFilter } from "@/components/ui/course";
+import OwnedCourseCard from "@/components/ui/course/card/OwnedCourseCard";
+import { MarketHeader } from "@/components/ui/marketplace";
 
 export default function ManageCourses() {
   return (

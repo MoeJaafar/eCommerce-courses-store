@@ -1,7 +1,7 @@
-import { Button, Message } from "../../../components/ui/common";
-import { BaseLayout } from "../../../components/ui/common/layout";
-import OwnedCourseCard from "../../../components/ui/course/card/OwnedCourseCard";
-import { MarketHeader } from "../../../components/ui/marketplace";
+import { Button, Message } from "@/components/ui/common";
+import { BaseLayout } from "@/components/ui/common/layout";
+import OwnedCourseCard from "@/components/ui/course/card/OwnedCourseCard";
+import { MarketHeader } from "@/components/ui/marketplace";
 
 export default function OwnedCourses() {
   return (

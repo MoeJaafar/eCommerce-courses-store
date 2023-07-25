@@ -3,7 +3,14 @@ import { useNetwork } from "@/components/web3/hooks";
 
 export default function WalletBar() {
   const { network } = useNetwork();
-  const { requireInstall } = useWeb3();
+  const web3Context = useWeb3();
+
+  if (!web3Context) {
+    // Return a loading state or error state
+    return <div>Loading...</div>;
+  }
+
+  const { requireInstall } = web3Context;
 
   return (
     <div className=" pt-11">
