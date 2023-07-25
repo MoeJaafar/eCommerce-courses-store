@@ -6,7 +6,7 @@ import { OrderModal } from "@/components/ui/order";
 import { useState } from "react";
 import { MarketHeader } from "@/components/ui/marketplace";
 import { Course, CourseWithIndex } from "@/content/types";
-
+import { toast } from "react-toastify";
 interface MarketplaceProps {
   courses: CourseWithIndex[];
 }
@@ -15,7 +15,8 @@ export default function Marketplace({ courses }: MarketplaceProps) {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   const purchaseCourse = (order: {}) => {
-    alert(JSON.stringify(order));
+    setSelectedCourse(null);
+    toast.success("Record has been saved in the system!", order);
   };
 
   return (
@@ -30,7 +31,7 @@ export default function Marketplace({ courses }: MarketplaceProps) {
               <div className="mt-3 flex justify-end mr-3">
                 <Button
                   variant="lightPurple"
-                  disabled={!canPurchaseCourse}
+                  disabled={false}
                   onClick={() => setSelectedCourse(course)}
                 >
                   Purchase
