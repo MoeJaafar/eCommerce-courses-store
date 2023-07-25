@@ -58,3 +58,4 @@ export default function Message({ children, type = "success" }: MessageProps) {
     </div>
   );
 }
+// tested
