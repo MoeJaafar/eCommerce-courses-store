@@ -18,8 +18,8 @@ export default function Navbar() {
           <Image
             src="https://img.icons8.com/ios-filled/50/000000/monzo--v1.png"
             className="h-8 mr-1"
-            width="12"
-            height="12"
+            width="24"
+            height="24"
             alt="just M"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -97,7 +97,7 @@ export default function Navbar() {
                         {account.data.substring(0, 5)}...
                         {account.data.substring(
                           account.data.length - 4,
-                          account.data.length,
+                          account.data.length
                         )}
                       </span>
                     )}
