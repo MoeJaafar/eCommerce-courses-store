@@ -51,8 +51,9 @@ export default function Marketplace({ courses }: MarketplaceProps) {
   );
 }
 
-export function getStaticProps() {
-  const { data } = getAllCourses();
+export async function getServerSideProps() {
+  const { data } = await getAllCourses();
+
   return {
     props: {
       courses: data,
