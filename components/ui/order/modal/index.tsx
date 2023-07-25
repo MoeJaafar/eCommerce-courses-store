@@ -28,6 +28,8 @@ const createFormState = (
     return _createFormState(true, "Price is not valid.");
   } else if (confirmationEmail.length === 0 || email.length === 0) {
     return _createFormState(true);
+  } else if (!email.includes("@")) {
+    return _createFormState(true, "Email is not valid.");
   } else if (email !== confirmationEmail) {
     return _createFormState(true, "Email are not matching.");
   } else if (!hasAgreedTOS) {
@@ -43,7 +45,7 @@ const createFormState = (
 interface OrderModalProps {
   course: Course;
   onClose: () => void;
-  onSubmit: (order: any) => void;
+  onSubmit: (order: {}) => void;
 }
 
 export default function OrderModal({

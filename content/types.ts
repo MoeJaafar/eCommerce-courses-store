@@ -20,6 +20,7 @@ export interface CourseMap {
   [key: string]: CourseWithIndex;
 }
 
+// We are forced to use any here as this interface is a clone of a private on inside one of third-party packages
 interface MetaMaskEthereumProvider extends AbstractProvider {
   isMetaMask?: boolean;
   once(eventName: string | symbol, listener: (...args: any[]) => void): this;
